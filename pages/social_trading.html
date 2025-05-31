@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Tradings</title>
+  <link rel="stylesheet" href="../css/social_trading.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="social-Trading-Container">
+    <div class="ttl-mam">
+      <h2>Multi-Account Manager</h2>
+    </div>
+    <div class="info-button-header">
+      <a href="#" class="info-toggle-details" id="toggleLink-details">
+        <span class="info-icon">ℹ️</span> Know what it is?
+      </a>
+    </div>
+
+    <div class="info-box-trade-detail" id="mamInfo-details">
+      <div class="noticed-header">
+        <strong>Understanding MAM Accounts</strong>
+      </div>
+      <div class="noticed-content">
+        <p><strong>Manager Trades, Auto-Copied:</strong> Trades by the manager are automatically replicated in your investment account in real time.</p><br>
+        <p><strong>Proportional Lot Sizing:</strong> Lot size adjusts based on your account balance relative to the manager's.</p><br>
+        <ul>
+          <li><strong>Example:</strong> Manager trades 1 lot for $10,000.</li>
+          <li>$20,000 Investor: Gets 2 lots.</li>
+          <li>$5,000 Investor: Gets 0.5 lots.</li><br>
+        </ul>
+        <p class="important-note">⚠️ <span id="ttl-important-note">Important Note:</span> Minimum trade size is 0.01 lot. Trades below this won't be copied.</p>
+      </div>
+    </div>
+
+    <div class="st-main-buttons">
+      <button class="st-btn create-mam-btn" id="mam-new-openModal">+ Create New MAM Manager Account</button>
+      <a  id="mam-invest-achor" class="st-btn invest-mam-btn" href="investmam.html">+ Invest in a MAM Account</a>
+    </div>
+
+    <div id="mamAccountList-con">
+
+      <div class="mam-account-card">
+        <ul class="mam-active-container">
+          <li class="mam-account-enable">Enable</li>
+          <li class="mam-account-disable" style="display:none;">Disable</li>
+        </ul>
+        <h3>${name} - MAM</h3>
+        <p id="account-id-mam">ID : ${accountId}</p>
+        <div class="mam-list-account-details">
+          <div><strong>Profit Sharing : </strong>0.00%</div>
+          <div><strong>Total Profit : </strong> $ 0.00</div>
+          <div><strong>Leverage : </strong>0.00x</div>
+        </div>
+        <div class="down-list-buttons">
+          <button class="mam-btn-btn deposit" onclick="showPopup('deposit-pop')">💳 Deposit</button>
+          <button class="mam-btn-btn withdraw" onclick="showPopup('withdraw-pop')">🏧 Withdraw</button>
+          <button class="mam-btn-btn investors" onclick="showPopup('investors-pop')">👥 Investors</button>
+          <button class="mam-btn-btn settings" onclick="showPopup('setting-pop')">⚙️ Settings</button>
+          <button class="mam-btn-btn enable-disable" onclick="toggleStatus(this)">❌ Disable</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-container" id="mamModal-container">
+    <div class="mam-modal-content">
+      <div class="mam-modal-header">
+        <h2 id="mam-modal-ttl">Create New MAM Account</h2>
+        <span class="close-button">&times;</span>
+      </div>
+      <div class="mam-modal-body-con">
+        <form class="mam-new-dtl-form" id="mamForm-con">
+          <label>Account Name</label>
+          <input type="text" required id="mam-accountName" />
+
+          <label>Profit Sharing Percentage</label>
+          <input type="number" required id="mam-profitPercentage" />
+
+          <label>Risk Level</label>
+          <select id="mam-riskLevel">
+            <option>Low</option>
+            <option selected>Medium</option>
+            <option>High</option>
+          </select>
+
+          <label>Leverage</label>
+          <select id="mam-leverage">
+            <option>50x</option>
+            <option>100x</option>
+            <option>200x</option>
+            <option>500x</option>
+            <option>1000x</option>
+          </select>
+
+          <label>Payout Frequency</label>
+          <select id="mam-payoutFrequency">
+            <option>Weekly</option>
+            <option>Monthly</option>
+            <option>Quarterly</option>
+            <option>Half-Yearly</option>
+          </select>
+
+          <label>Master Password</label>
+          <input type="password" required id="masterPassword" />
+
+          <label>Investor Password</label>
+          <input type="password" required id="investorPassword" />
+
+          <button type="submit" class="mam-submit-btn">Create Account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    <!-- Popup Overlay -->
+    <div id="popup-overlay" class="popup-overlay">
+      <div class="modal-content" id="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <!-- --------------------------------------------------------------------------------------------- -->
+                <!-- Deposit Modal -->
+                <div id="deposit-pop" class="popup-section">
+                  <div class="deposit-modal-container">
+                    <div class="deposit-modal-header">
+                      <span>Deposit Funds</span>
+                      <!-- <span id="closeModal" style="cursor:pointer;">&times;</span> -->
+                    </div>
+
+                    <div class="tabs">
+                      <div class="tab active" onclick="switchTab('cheesepay')">CheesePay</div>
+                      <div class="tab" onclick="switchTab('manual')">Manual Deposit</div>
+                      <div class="tab" onclick="switchTab('usdt')">USDT (TRC20)</div>
+                    </div>
+
+                    <div class="deposit-container-content">
+                      <div class="info-box">
+                        <span>📘 Account ID: 2141707098</span>
+                      </div>
+
+                      <!-- CheesePay Tab -->
+                      <div id="cheesepay" class="tab-content">
+                        <!-- <div id="exchangeWarning" class="note-warning">
+                          ⚠️ Exchange rate not available. Please wait while we fetch the exchange rate to use CheesePay.
+                        </div> -->
+
+                        <div class="deposit-radio-group">
+                          <label><input type="radio" name="cp-currency" value="USD" checked onchange="updateCPConversion()"> USD</label>
+                          <label><input type="radio" name="cp-currency" value="INR" onchange="updateCPConversion()"> INR</label>
+                        </div>
+
+                        <div class="deposit-label" id="cpLabelUSD">USD Amount (USD)</div>
+                        <input class="input-text-file" type="text" id="cpInput" placeholder="Enter amount" oninput="updateCPConversion()">
+                        <input class="input-text-file convert-disabled" type="text" id="cpConverted" disabled>
+
+                        <button class="deposit-box-btn" onclick="alert('Proceeding with CheesePay')">Confirm & Proceed</button>
+                      </div>
+
+                      <!-- Manual Deposit Tab -->
+                      <div id="manual" class="tab-content hidden-con">
+                        <p>Upload proof of payment. Staff approval is required.</p>
+
+                        <div class="deposit-radio-group">
+                          <label><input type="radio" name="manual-currency" value="USD" checked onchange="updateManualConversion()"> USD</label>
+                          <label><input type="radio" name="manual-currency" value="INR" onchange="updateManualConversion()"> INR</label>
+                        </div>
+
+                        <input class="input-text-file" type="text" id="manualInput" placeholder="Enter amount" oninput="updateManualConversion()">
+                        <input class="input-text-file convert-disabled" type="text" id="manualConverted" disabled>
+
+                        <input class="input-text-file" type="file">
+                        <button class="deposit-box-btn" onclick="alert('Submitted for staff approval')">Submit</button>
+                      </div>
+
+                      <!-- USDT Tab -->
+                      <div id="usdt" class="tab-content hidden-con">
+                        <p>Send USDT (TRC20) payment to:</p>
+                        <div class="address-box" id="usdtAddress">TBkQunj4UD4Mej7pKyRVAUg5Jgm9aJRCHs</div>
+                        <div class="copy-btn" onclick="copyAddress()">📋 Copy Address</div>
+
+                        <input class="input-text-file" type="text" placeholder="USD Amount (USDT)">
+                        <input class="input-text-file" type="file">
+
+                        <button class="deposit-box-btn" onclick="alert('USDT payment submitted!')">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+              <!-- --------------------------------------------------------------------------------------------- -->
+              <!--withdraw codes -->
+              <div id="withdraw-pop" class="popup-section">
+                <div class="withdraw-con-start">
+                  <div class="withdraw-container">
+                    <h2 id="with-titl">Withdraw Funds</h2>
+                  </div>
+                  <div id="error-message" class="error-message">
+                    <span>❌ Please enter a valid amount within the withdrawable limit.</span>
+                  </div>
+                  <div class="with-body">
+                    <div class="with-body-con">
+                      <div class="info-box">
+                        <label class="with-lable">Account ID</label>
+                        <div class="info-value"><span id="with_accid">2141707098</span></div>
+                      </div>
+    
+                      <div class="info-box">
+                        <label class="with-lable">Available Balance</label>
+                        <div class="info-value-balance">$<span id="with_bal">18470.80</span></div>
+                      </div>
+                    </div>
+
+  
+                    <p id="tit-withdraw-method">Select Withdrawal Method:</p><br>
+
+                    <div class="withdraw-tabs">
+                      <div class="with-tab-buttons">
+                        <button class="with-tab-btn active" data-target="bank-tab">Bank Transfer</button>
+                        <button class="with-tab-btn" data-target="crypto-tab">Crypto Wallet</button>
+                      </div>
+                    
+                      <div class="with-tab-content active" id="bank-tab">
+                        <strong>Bank Transfer</strong><br>
+                        <small class="withdraw_data">Bank Name:</small>
+                        <span class="withdraw_data-span" id="with_bank_name"> Indian Bank</span><br>
+                        <small class="withdraw_data">Account Number:</small>
+                        <span class="withdraw_data-span" id="with_account_no"> 5461143154</span><br>
+                        <small class="withdraw_data">Branch:</small>
+                        <span class="withdraw_data-span" id="with_branch"> Vadapalai</span><br>
+                        <small class="withdraw_data">IFSC Code:</small>
+                        <span class="withdraw_data-span" id="with_ifsc"> JFJ884596454</span>
+                      </div>
+                    
+                      <div class="with-tab-content" id="crypto-tab">
+                        <strong>Crypto Wallet</strong><br>
+                        <small class="withdraw_data">Wallet Address:</small>
+                        <span class="withdraw_data-span" id="with_wallet_add"> No: 03 Vadapalai chennai</span><br>
+                        <small class="withdraw_data">Exchange Name:</small>
+                        <span class="withdraw_data-span" id="with_exchange_name"> Ganapathi rao</span>
+                      </div>
+                    </div>
+  
+                  <input class="with-input-amount" type="number" id="with_amount" placeholder="Enter amount">
+  
+                  <div class="with_buttons">
+                    <button class="with_close_btn" onclick="closePopup()">Close</button>
+                    <button class="with_withdraw_btn" onclick="withdraw()">Withdraw</button>
+                  </div>
+                </div>
+                </div>
+
+              </div>
+              <!-- --------------------------------------------------------------------------------------------- -->
+              <!-- setting codes -->
+              <div id="setting-pop" class="popup-section">
+                <div class="manage-setting">
+                  <h3 id="Mng-h3">⚙️Manage Settings</h3><br>
+                  <!-- Leverage -->
+                  <div>
+                    <label  class="MngLable" for="holder_leverage">Leverage</label>
+                    <p>Current Leverage: <span id="currentLeverage">500</span></p>
+                    <select class="MngSelect" id="leverageSelect" name="leverage" required>
+                      <option value="" disabled selected>Select Leverage</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                      <option value="200">200</option>
+                      <option value="500">500</option>
+                      <option value="1000">1000</option>
+                    </select>
+                    <button class="MngBtn" onclick="updateLeverage()">Update Leverage</button>
+                  </div>
+                
+                  <!-- Change Password -->
+                  <div>
+                    <label class="MngLable">Change Password</label>
+                    <input class="MngInput" type="password" id="newPassword" placeholder="New Password">
+                    <input class="MngInput" type="password" id="confirmPassword" placeholder="Confirm Password">
+                    <button class="MngBtn" onclick="updatePassword()">Update Password</button>
+                  </div>
+                
+                  <!-- Algo Trading -->
+                  <div class="algo">
+                    <label  class="MngLable">Algo Trading</label>
+                    <p class="current-status">Current Status: <span id="algoStatus" style="color: green;">Enabled</span></p>
+                    <label  class="MngLable" class="toggle-switch"><br>
+                      <input  type="checkbox" id="algoToggle" checked onchange="toggleAlgo()" hidden>
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div id="investors-pop" class="popup-section">
+                <div class="investors-container">
+                  <div class="investors-trade-details">
+                    <div class="investors-card-header">
+                        <span>Investor Management</span>
+                      </div>
+                      <div class="investors-card-content">
+                        <div class="investors-user-section">
+                          <div class="investors-user-avatar">👤</div>
+                          <div class="investors-user-details">
+                            <div class="investors-user-name">Investors name</div>
+                            <div class="investors-user-email">email</div>
+                            <div class="investors-user-trading-id">🪪 Trading ID: 2141708487</div>
+                          </div>
+                        </div>
+                        <div class="investors-stats">
+                          <div class="investors-stat-row" id="investors-invest-amount"><span>💵 Invested:</span><span>$0.00</span></div>
+                          <div class="investors-stat-row" id="investors-profit-amount"><span>✔️ Profit:</span><span>$0.00</span></div>
+                          <div class="investors-stat-row" id="investors-roi-level"><span>📈 ROI:</span><span>N/A</span></div>
+                
+                          <div class="stat-row copydata-row-incestors">
+                            <span class="copydata-label">Copying Allowed</span>
+                            <label class="switch-copy-notcopy">
+                              <input class="investors-input" type="checkbox" checked>
+                              <span class="investors-slider round"></span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="investors-card-content">
+                        <div class="investors-user-section">
+                          <div class="investors-user-avatar">👤</div>
+                          <div class="investors-user-details">
+                            <div class="investors-user-name">Investors name</div>
+                            <div class="investors-user-email">email</div>
+                            <div class="investors-user-trading-id">🪪 Trading ID: 2141708487</div>
+                          </div>
+                        </div>
+                        <div class="investors-stats">
+                          <div class="investors-stat-row" id="investors-invest-amount"><span>💵 Invested:</span><span>$0.00</span></div>
+                          <div class="investors-stat-row" id="investors-profit-amount"><span>✔️ Profit:</span><span>$0.00</span></div>
+                          <div class="investors-stat-row" id="investors-roi-level"><span>📈 ROI:</span><span>N/A</span></div>
+                
+                          <div class="stat-row copydata-row-incestors">
+                            <span class="copydata-label">Copying Allowed</span>
+                            <label class="switch-copy-notcopy">
+                              <input class="investors-input" type="checkbox" checked>
+                              <span class="investors-slider round"></span>
+                            </label>
+                          </div>
+                        </div>
+                      </div> -->
+                </div>
+                </div>
+ 
+              </div>
+
+
+      </div>
+    </div>
+
+
+
+
+
+             
+
+  <script src="../js/social_trading.js"></script>
+</body>
+</html>

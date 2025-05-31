@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile</title>
+  <link href="../css/profile.css" rel="stylesheet"/>
+  <script src="../js/profile.js" defer></script>
+</head>
+<body>
+  <div class="container py-5">
+    <!-- Global Alert Area -->
+    <div id="globalPageAlert" class="alert mt-3" role="alert" style="display: none;"></div>
+
+    <div class="profile-container">
+
+      <!-- PERSONAL INFO -->
+      <div class="card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="all-h4-title">Personal Information</h4>
+          <button class="btn btn-outline-primary" id="editProfileButton">
+            <i class='bx bx-edit'></i> Edit
+          </button>
+        </div>
+        <form id="profileForm">
+          <div class="row">
+            <div class="con-divide">
+              <div class="col-md-6 mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" id="name" name="name" class="form-control" disabled required/>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-control" disabled required/>
+              </div>
+            </div>
+
+            <div class="con-divide1">
+              <div class="col-md-6 mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="tel" id="phone" name="phone" class="form-control" disabled required/>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" id="dob" name="dob" class="form-control" disabled required/>
+              </div>
+            </div>
+          </div>
+          <div class="text-center" id="profileActionButtons" style="display: none;">
+            <button type="submit" class="btn btn-success mx-2">Save</button>
+            <button type="button" class="btn btn-secondary mx-2" id="cancelProfileButton">Cancel</button>
+          </div>
+          <div class="alert mt-3" id="profileAlertMessage" role="alert" style="display: none;"></div>
+        </form>
+      </div>
+
+      <!-- ADDRESS INFO -->
+      <div class="card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4>Address Information</h4>
+          <button class="btn btn-outline-primary" id="editAddressButton">
+            <i class='bx bx-edit'></i> Edit
+          </button>
+        </div>
+        <form id="addressForm">
+          <div class="row">
+            <div class="con-divide">
+              <div class="col-md-6 mb-3">
+                <label for="streetAddress" class="form-label">Street</label>
+                <input type="text" id="streetAddress" name="streetAddress" class="form-control" disabled required/>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="city" class="form-label">City</label>
+                <input type="text" id="city" name="city" class="form-control" disabled required/>
+              </div>
+            </div>
+            <div class="con-divide1">
+              <div class="col-md-6 mb-3">
+                <label for="state" class="form-label">State</label>
+                <input type="text" id="state" name="state" class="form-control" disabled required/>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="zipCode" class="form-label">Zip Code</label>
+                <input type="text" id="zipCode" name="zipCode" class="form-control" disabled required/>
+              </div>
+            </div>
+          </div>
+          <div class="text-center" id="addressActionButtons" style="display: none;">
+            <button type="submit" class="btn btn-success mx-2">Save</button>
+            <button type="button" class="btn btn-secondary mx-2" id="cancelAddressButton">Cancel</button>
+          </div>
+          <div class="alert mt-3" id="addressAlertMessage" role="alert" style="display: none;"></div>
+        </form>
+      </div>
+
+      <!-- BANK INFO -->
+      <div class="card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4>Bank Information</h4>
+          <button class="btn btn-outline-primary" id="editBankButton">
+            <i class='bx bx-edit'></i> Edit
+          </button>
+        </div>
+        <form id="bankForm">
+          <div class="row">
+            <div class="con-divide">
+              <div class="col-md-6 mb-3">
+                <label for="bankName" class="form-label">Bank Name</label>
+                <input type="text" id="bankName" name="bankName" class="form-control" disabled required/>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="accountNumber" class="form-label">Account Number</label>
+                <input type="text" id="accountNumber" name="accountNumber" class="form-control" disabled required/>
+              </div>
+            </div>
+            <div class="con-divide1">
+              <div class="col-md-6 mb-3"> <!-- Assuming IFSC takes a full half, or adjust col class if it's a smaller field in a row -->
+                <label for="ifscCode" class="form-label">IFSC Code</label>
+                <input type="text" id="ifscCode" name="ifscCode" class="form-control" disabled required/>
+              </div>
+            </div>
+          </div>
+          <div class="text-center" id="bankActionButtons" style="display: none;">
+            <button type="submit" class="btn btn-success mx-2">Save</button>
+            <button type="button" class="btn btn-secondary mx-2" id="cancelBankButton">Cancel</button>
+          </div>
+          <div class="alert mt-3" id="bankAlertMessage" role="alert" style="display: none;"></div>
+        </form>
+      </div>
+
+      <!-- WALLET INFO -->
+      <div class="card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4>Wallet Information</h4>
+          <button class="btn btn-outline-primary" id="editWalletButton">
+            <i class='bx bx-edit'></i> Edit
+          </button>
+        </div>
+        <form id="walletForm">
+          <div class="row">
+            <div class="col-md-6 mb-3"> <!-- Assuming Wallet Address takes a full half, or col-md-12 if it's the only field in its "row" -->
+              <label for="walletAddress" class="form-label">Wallet Address</label>
+              <input type="text" id="walletAddress" name="walletAddress" class="form-control" disabled required/>
+            </div>
+          </div>
+          <div class="text-center" id="walletActionButtons" style="display: none;">
+            <button type="submit" class="btn btn-success mx-2">Save</button>
+            <button type="button" class="btn btn-secondary mx-2" id="cancelWalletButton">Cancel</button>
+          </div>
+          <div class="alert mt-3" id="walletAlertMessage" role="alert" style="display: none;"></div>
+        </form>
+      </div>
+
+      <!-- KYC INFO -->
+      <div class="card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4>KYC Upload</h4>
+          <button class="btn btn-outline-primary" id="editKycButton">
+            <i class='bx bx-edit'></i> Edit
+          </button>
+          <!-- No standard "Edit" button here; form is always active or activated by file selection -->
+        </div>
+        <form id="kycForm" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="addressProof" class="form-label">Address Proof</label>
+              <input type="file" id="addressProof" name="addressProof" class="form-control" required/>
+              <small id="addressProofCurrentFile" class="form-text text-muted"></small> <!-- For displaying current file name -->
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="idProof" class="form-label">ID Proof</label>
+              <input type="file" id="idProof" name="idProof" class="form-control" required/>
+              <small id="idProofCurrentFile" class="form-text text-muted"></small> <!-- For displaying current file name -->
+            </div>
+          </div>
+          <div class="text-center" id="kycActionButtons" style="display: none;">
+            <button type="submit" class="btn btn-success mx-2">Upload</button>
+            <button type="button" class="btn btn-secondary mx-2" id="cancelKycButton">Cancel</button>
+          </div>
+          <div class="alert mt-3" id="kycAlertMessage" role="alert" style="display: none;"></div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

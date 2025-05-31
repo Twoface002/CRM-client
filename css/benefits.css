@@ -1,0 +1,88 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.benifit-outer{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial,sans-serif;
+  padding: 50px;
+  gap: 30px;  
+  position: static;
+}
+.benifit-tilte{
+  height: 100%;
+  width: 100%;
+}
+.benifit-title h2{
+  height: 60px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(255, 255, 255);
+}
+.benifit-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.benifit-grid-item {
+  position: static;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px 0px rgba(104, 107, 148, 0.37); /* soft shadow */
+  backdrop-filter: blur(10px); /* blur background behind */
+  -webkit-backdrop-filter: blur(10px);     /* for Safari */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* subtle border */
+  color: rgb(48, 47, 47);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.benifit-grid-container i{
+  font-size: 35px;
+}
+.benifit-grid-container h4{
+  font-size: large;
+}
+.benifit-grid-container p{
+  color: rgb(121, 120, 120);
+  font-size: 18px;
+}
+#one {
+  color: red;
+}
+#two {
+  color: rgba(38, 0, 255, 0.499);
+}
+#three {
+  color: rgb(0, 255, 89);
+}
+#four {
+  color: rgb(255, 153, 0);
+}
+#five {
+  color: rgb(0, 191, 255);
+}
+#six {
+  color: rgb(255, 0, 102);
+}
+#seven {
+  color: rgb(240, 204, 61);
+}
+#eight {
+  color: rgb(170, 0, 255);
+}
+#nine {
+  color: rgb(54, 236, 218);
+}
+#ten {
+  color: rgb(6, 123, 132);
+}

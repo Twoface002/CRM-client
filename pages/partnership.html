@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IB Panel Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/partnership.css">  
+</head>
+<body>
+
+  <div class="navbar">IB Panel</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('dashboard', this)">Dashboard</div>
+    <div class="tab" onclick="switchTab('clients', this)">Clients</div>
+    <div class="tab" onclick="switchTab('commissions', this)">Commissions</div>
+    <div class="tab" onclick="switchTab('withdrawals', this)">Withdrawals</div>
+  </div>
+<!-- Dashboard page html code here -->
+  <div id="dashboard" class="tab-content active">
+    <div class="container" id="partnership-dashboard-container">
+      <div class="card"><div class="icon yellow"><i class="fas fa-users"></i></div><h3>Total Clients</h3><span class="counter" data-target="4">0</span></div>
+      <div class="card"><div class="icon purple"><i class="fas fa-user-plus"></i></div><h3>Direct Clients</h3><span class="counter" data-target="4">0</span></div>
+      <div class="card"><div class="icon green"><i class="fas fa-dollar-sign"></i></div><h3>Total Earnings</h3><span class="counter" data-target="967.84">0</span></div>
+      <div class="card"><div class="icon red"><i class="fas fa-money-bill-wave"></i></div><h3>Total Withdrawals</h3><span class="counter" data-target="640">0</span></div>
+      <div class="card"><div class="icon orange"><i class="fas fa-wallet"></i></div><h3>Commission Balance</h3><span class="counter" data-target="327.84">0</span></div>
+      <div class="card"><div class="icon"><i class="fas fa-calendar-alt"></i></div><h3>Current Month Earnings</h3><span class="counter" data-target="640">0</span></div>
+    </div>
+
+    <div class="charts">
+      <div class="chart-container">
+        <h3 style="text-align:center; color:#ccc;">Monthly Earnings</h3>
+        <canvas id="monthlyEarningsChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <h3 style="text-align:center; color:#ccc;">Earnings Per Client</h3>
+        <canvas id="earningsPerClientChart"></canvas>
+      </div>
+    </div>
+
+    <div class="referral">
+      <p><strong>Referral Link:</strong> 
+        <input type="text" id="referralLink" value="https://client.vtindex.com/referralsignup?referral=7000833" readonly>
+        <button onclick="copyReferralLink()">📋 Copy</button>
+      </p>
+    </div>
+  </div>
+
+<!-- Client page html code here -->
+  <div id="clients" class="tab-content">
+    <div class="container" id="partnership-client-container">
+      <h2 class="ttl-client"><i class="fas fa-code-branch"></i> Client Tree</h2>
+            <div class="container">
+  <div class="top-bar">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search user name or email..." onkeyup="filterTableClient()">
+    </div>
+    <button class="add-user-btn" onclick="openModal()">+ Add User</button>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Registered Date</th>
+      <th>Country</th>
+    </tr>
+    </thead>
+    <tbody id="userTableBody">
+    <!-- User rows will be added here -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="newUserModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3 id="modal-content-ttl">Add New User</h3>
+    <form id="userForm">
+      <input type="text" id="name" placeholder="Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="text" id="phone" placeholder="Phone" required>
+      <input type="text" id="country" placeholder="Country" required>
+      <button type="submit" class="submit-btn">Create User</button>
+    </form>
+  </div>
+</div>
+
+
+
+    </div>
+  </div>
+<!-- Commission page html code here -->
+  <div id="commissions" class="tab-content">
+    <div class="container" id="partnership-commissions-container">
+      <header class="commission-header">
+        <h2><i class="icon">📘</i> Commission Status</h2>
+      </header>
+      <div class="searchBox">
+        <input type="text" id="searchInput-commission" placeholder="Search by Symbol" />
+      </div>
+
+
+      <div class="table-container">
+        <table id="commissionTable">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th data-sort="tradeId">Trade ID</th>
+              <th data-sort="client">Client</th>
+              <th data-sort="account">Trading Account</th>
+              <th data-sort="symbol">Symbol</th>
+              <th data-sort="totalCommission">Total Commission</th>
+              <th data-sort="ibCommission">Commission to IB</th>
+              <th data-sort="createdAt">Created At</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="pagination-container">
+        <div class="rows-con">
+          <label for="rowsPerPage">Rows per page:</label>
+          <select id="rowsPerPage">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+
+        <div class="pagination-con" id="pagination"></div>
+      </div>
+
+    </div>
+  </div>
+
+
+<!-- Withdrawals page html code here -->
+
+<div id="withdrawals" class="tab-content">
+  <div class="container" id="partnership-withdrawals-container">
+
+    <h2><span class="icon">🏧</span> Withdrawals</h2>
+    <div class="balance">Balance: <span class="amount" id="balanceDisplay">$0.00</span></div>
+
+    <select id="accountSelect">
+      <option selected disabled>Select Trading Account</option>
+      <option value="acc1">Account #1</option>
+      <option value="acc2">Account #2</option>
+    </select>
+
+    <div class="input-group">
+      <input type="number" id="amountInput" placeholder="Enter amount" />
+      <button id="submitBtn">💲 Submit</button>
+    </div>
+
+    <div class="withtabs">
+      <button class="withtab active" data-tab="pendingTab">Pending</button>
+      <button class="withtab" data-tab="historyTab">History</button>
+    </div>
+
+    <!-- Pending Tab -->
+    <div id="pendingTab" class="withtab-content">
+      <h3>Pending Transactions</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>User</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="pendingTableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- History Tab -->
+    <div id="historyTab" class="withtab-content" style="display: none;">
+      <h3>Transaction History</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>User</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="historyTableBody"></tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let userId = 1;
+
+  document.getElementById("userForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const country = document.getElementById("country").value.trim();
+    const date = new Date().toLocaleDateString();
+
+    const tbody = document.getElementById("userTableBody");
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${userId++}</td>
+      <td>${name}</td>
+      <td>${email}</td>
+      <td>${phone}</td>
+      <td>${date}</td>
+      <td>${country}</td>
+    `;
+    tbody.appendChild(tr);
+
+    document.getElementById("userForm").reset();
+    closeModal();
+  });
+
+  function openModal() {
+    document.getElementById("newUserModal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("newUserModal").style.display = "none";
+  }
+
+  function filterTableClient() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("#userTableBody tr");
+
+    rows.forEach(row => {
+      const name = row.cells[1].textContent.toLowerCase();
+      const email = row.cells[2].textContent.toLowerCase();
+      row.style.display = (name.includes(input) || email.includes(input)) ? "" : "none";
+    });
+  }
+</script>
+
+  <script src="../js/partnership.js"></script>
+  <script src="../js/Run.js"></script>
+</body>
+</html>

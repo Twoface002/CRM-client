@@ -1,0 +1,381 @@
+/* ----- Global Styles ----- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: transparent;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+  #globalPageAlert{
+    text-align: center;
+    color: white;
+  }
+  .profile-container {
+    width: 60%;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+  }
+    /* === Container & Layout === */
+  
+  h2, h4 {
+    font-weight: 600;
+  }
+  
+  .card {
+    background-color:white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 24px rgba(44, 62, 80, 0.08);
+    transition: all 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+  }
+  
+
+  .profile-header {
+    margin-bottom: 40px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="file"] {
+
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f7eded;
+    width: 350px;
+  }
+  
+  input[type="text"]:disabled,
+  input[type="email"]:disabled,
+  input[type="tel"]:disabled,
+  input[type="date"]:disabled,
+  input[type="file"]:disabled {
+    background: #f7eded;
+    width: 350px;
+    padding: 10px;
+  }
+
+  #walletAddress {
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f7eded;
+    width: 95%;
+
+  }
+  #walletAddress:disabled {
+    background: #f7eded;
+    width: 95%;
+    padding: 10px;
+
+  }
+  
+  button.btn-outline-primary {
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  
+  button.btn-success,
+  button.btn-secondary,
+  button.btn-danger,
+  button.btn-warning {
+    border-radius: 20px;
+    min-width: 120px;
+  }
+  
+
+  .alert {
+    margin-top: 20px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  
+
+  #profileActionButtons,
+  #addressActionButtons,
+  #bankActionButtons,
+  #walletActionButtons,
+  #kycActionButtons {
+    margin-top: 20px;
+  }
+  
+  
+
+
+
+
+/* === Form Elements === */
+.form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #00235c;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+  border-color: #6366f1;
+  outline: none;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+/* === Grid System === */
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-content:start ;
+
+}
+.col-md-6 {
+  width: 100%;
+  padding-left: 30px;
+  margin-bottom: 1.5rem;
+}
+
+.row .con-divide1{
+  display: flex;
+  flex-direction: column;
+  /* padding-left: 300px;  */
+}
+
+
+/* === Headings === */
+h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+/* === Button Base === */
+.btn {
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* === Themed Buttons === */
+.btn-outline-primary {
+  color: #9e07cc;
+  background-color: transparent;
+  border: 2px solid #c274f7;
+}
+.btn-outline-primary:hover {
+  background-color: #ca7cfd;
+  color: #ffffff;
+}
+
+.btn-success {
+  background-color: #00dbdb;
+  color: white;
+}
+.btn-success:hover {
+  background-color: #058c96;
+}
+
+.btn-secondary {
+  background-color: #5b606b;
+  color: white;
+}
+.btn-secondary:hover {
+  background-color: #4b5563;
+}
+
+/* === Utility & Alignment === */
+.d-flex {
+  display: flex;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.align-items-center {
+  align-items: center;
+}
+.text-center {
+  text-align: center;
+}
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/* === Alert Styling === */
+.alert {
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+.alert-success {
+  background-color: #ecfdf5;
+  color: #065f46;
+}
+.alert-danger {
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+/* === Icon Replacement (Edit) === */
+.bx-edit::before {
+  content: "\270E"; /* Pencil Unicode */
+  font-size: 1rem;
+  margin-right: 6px;
+  color: #b163f1;
+}
+
+
+
+
+/* === Media Queries for Responsiveness === */
+
+/* Small devices (phones, 600px and down) */
+@media (max-width: 600px) {
+  .profile-container,
+  .card,
+  .container {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="file"],
+  #walletAddress {
+    width: 100%;
+  }
+  input[type="text"]:disabled,
+  input[type="email"]:disabled,
+  input[type="tel"]:disabled,
+  input[type="date"]:disabled,
+  input[type="file"]:disabled,
+  #walletAddress:disabled {
+    width: 100%;
+  }
+
+  .row {
+    flex-direction:column;
+    gap: 20px;
+  }
+  .col-md-6 {
+    width: 100%;
+    padding-left: 0;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  button {
+    width: 35%;
+    margin-bottom: 10px;
+  }
+}
+
+/* Medium devices (tablets, 768px and down) */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .col-md-6 {
+    width: 100%;
+    padding-left: 0;
+    display: flex;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="file"],
+  #walletAddress {
+    width: 100%;
+  }
+  input[type="text"]:disabled,
+  input[type="email"]:disabled,
+  input[type="tel"]:disabled,
+  input[type="date"]:disabled,
+  input[type="file"]:disabled,
+  #walletAddress:disabled {
+    width: 100%;
+  }
+}
+
+
+/* Large devices min-width : (desktops, 992px || 768px and up) */
+
+
+@media (min-width: 992px) {
+  .profile-container {
+    padding: 2rem;
+    width: 70%;
+    margin: auto;
+  }
+
+  .row {
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  .col-md-6 {
+    width: 48%;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="file"],
+  #walletAddress {
+    width: 350px;
+  }
+  input[type="text"]:disabled,
+  input[type="email"]:disabled,
+  input[type="tel"]:disabled,
+  input[type="date"]:disabled,
+  input[type="file"]:disabled,
+  #walletAddress:disabled {
+    width: 350px;
+  }
+}

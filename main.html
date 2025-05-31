@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VTIndex | Client Dashboard </title>
+  <link rel="icon" href="../src/Logo-img.png"/>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/scroll-bar-template.css">
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <div class="outer" id="outer">
+    <div class="inner" id="inner">
+      <nav id="sidebar" >
+        <div class="logo" id="logo">
+          <img src="https://vtindex.com/img/logo/logo.svg" alt="logo" href="#" onclick="loadpage('dashboard')">
+        </div><br>
+
+        <div class="nav-content" id="nav-content">
+          <a href="#" onclick="loadpage('dashboard')" aria-label="Go to Dashboard">
+            <div class="nav-item" id="dashboard">
+              <i class="fa-solid fa-house"></i><br>
+              <span>Dashboard</span>
+            </div>
+          </a>
+
+          <a href="#" onclick="loadpage('trading')" aria-label="View Trading Accounts">
+            <div class="nav-item" id="tradingaccounts">
+              <i class="fa-solid fa-wallet"></i><br>
+              <span>Trading Accounts</span>
+            </div>
+          </a>
+
+          <a href="#" onclick="loadpage('social')" aria-label="View Social Trading">
+            <div class="nav-item" id="socialtrading">
+              <i class="fa-solid fa-people-group"></i><br>
+              <span>Social Trading</span>
+            </div>
+          </a>
+
+          <a href="#" onclick="loadpage('pro-capital')" aria-label="View Pro Capital">
+            <div class="nav-item" id="pro-capital">
+              <i class="fa-solid fa-chart-line"></i><br>
+              <span>Pro Capital</span>
+            </div>
+          </a>
+          <a href="#" onclick="loadpage('partnership')" aria-label="View Partnership">
+            <div class="nav-item" id="partnership">
+              <i class="fa-solid fa-handshake"></i><br>
+              <span>Partnership</span>
+            </div>
+          </a>
+
+          <a href="#" onclick="loadpage('transactions')" aria-label="View transactions">
+            <div class="nav-item" id="transactions-history">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i><br>
+              <span>Transactions</span>
+            </div>
+          </a>
+          <a href="#" onclick="loadpage('platform')" aria-label="View Platform">
+            <div class="nav-item" id="platform">
+              <i class="fa-solid fa-desktop"></i><br>
+              <span>Platform</span>
+            </div>
+          </a>
+          <a href="#" onclick="loadpage('support')" aria-label="View Support">
+            <div class="nav-item" id="support">
+                <i class="fa-solid fa-headset"></i><br>
+                <span>Support</span>
+            </div>
+            </a>
+            <a href="#" onclick="loadpage('tickers')" aria-label="View tickers">
+              <div class="nav-item" id="tickers">
+                <i class="fa-solid fa-ticket"></i>
+                <span>Ticket</span>
+            </div>
+            </a>
+            <a href="#" onclick="loadpage('livechart')" aria-label="View Live Chart">
+              <div class="nav-item" id="live-chart">
+                <i class="fa-solid fa-chart-simple"></i><br>
+                <span>Live Chat</span>
+              </div>
+            </a>
+            <a href="#" onclick="loadpage('tradingview')" aria-label="View Trading View">
+              <div class="nav-item" id="trading-view">
+                <i class="fa-solid fa-chart-simple"></i><br>
+                <span>Trading View</span>
+              </div>
+            </a>
+          </div>
+      </nav>
+      
+
+      <main>
+        <header>
+          <div class="container" id="container">
+            <div class="menu-icon" id="menu-icon">
+              <i class="fa-solid fa-bars-staggered" style="padding-left: 20px;"></i>
+            </div>
+          </div>
+
+          <div class="container1" id="container1">
+            <div class="title-img" id="title-img"><img src="https://vtindex.com/img/logo/logo.svg" alt="logo" ></div>
+          </div>
+
+          <div class="container2" id="container2">
+            
+            <div class="profile" id="profile">
+              <a href="#" onclick="loadpage('profile')">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+              </a>
+            </div>
+            
+            <div class="logout" id="logout">
+              <a href="#" onclick="loadpage('logout')"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+          </div>
+
+          </header>
+          <main id="mainContent">
+            <div id="loadingIndicator" class="loading">Loading...</div>
+            <iframe id="mainIframe" src="/pages/dashboard.html"></iframe>
+        </main>
+      </main>
+
+    </div>
+  </div>
+<script src="../js/main.js"></script>
+</body>
+</html>

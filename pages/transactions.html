@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction</title>
+  <link rel="stylesheet" href="../css/transactions.css">
+  <script src="../js/transactions.js"></script>
+</head>
+<body>
+  <h1>Transactions History</h1>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showSection('deposits',event)">Deposits</div>
+    <div class="tab" onclick="showSection('withdrawals',event)">Withdrawals</div>
+    <div class="tab" onclick="showSection('transfers',event)">Internal Transfers</div>
+    <div class="tab" onclick="showSection('pendings',event)">Pending Transaction</div>
+  </div>
+
+  <div id="deposits" class="section active">
+    <table>
+      <thead>
+        <tr>
+          <th>Date/Time</th>
+          <th>Account ID</th>
+          <th>Account Name</th>
+          <th>Amount (USD)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>4/12/2025, 1:49:39 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$100.00</td>
+          <td><span class="approved">APPROVED</span></td>
+        </tr>
+        <tr>
+          <td>4/7/2025, 9:23:31 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$50.00</td>
+          <td><span class="approved">APPROVED</span></td>
+        </tr>
+        <tr>
+          <td>4/3/2025, 3:08:48 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$10000.00</td>
+          <td><span class="approved">APPROVED</span></td>
+        </tr>
+        <tr>
+          <td>4/2/2025, 2:02:58 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$5999.00</td>
+          <td><span class="approved">APPROVED</span></td>
+        </tr>
+        <tr>
+          <td>3/26/2025, 2:24:41 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$120.00</td>
+          <td><span class="rejected">REJECTED</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="withdrawals" class="section">
+    <table>
+      <thead>
+        <tr>
+          <th>Date/Time</th>
+          <th>Account ID</th>
+          <th>Account Name</th>
+          <th>Amount (USD)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>4/12/2025, 1:49:39 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$100.00</td>
+          <td><span class="approved">APPROVED</span></td>
+        </tr>
+        <tr>
+          <td>4/7/2025, 9:23:31 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$50.00</td>
+          <td><span class="approved">APPROVED</span></td>
+        </tr>
+        <tr>
+          <td>3/26/2025, 2:24:41 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$120.00</td>
+          <td><span class="rejected">REJECTED</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="transfers" class="section">
+    <table>
+      <thead>
+        <tr>
+          <th>Date/Time</th>
+          <th>Account ID</th>
+          <th>Account Name</th>
+          <th>Amount (USD)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>4/12/2025, 1:49:39 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$100.00</td>
+          <td><span class="approved">APPROVED</span></td>
+        </tr>
+        <tr>
+          <td>4/7/2025, 9:23:31 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$50.00</td>
+          <td><span class="approved">APPROVED</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="pendings" class="section">
+    <table>
+      <thead>
+        <tr>
+          <th>Date/Time</th>
+          <th>Account ID</th>
+          <th>Account Name</th>
+          <th>Amount (USD)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>4/12/2025, 1:49:39 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$100.00</td>
+          <td><span class="approved">APPROVED</span></td>
+        </tr>
+        <tr>
+          <td>4/7/2025, 9:23:31 PM</td>
+          <td>2141707098</td>
+          <td>tamizharasan344@gmail.com</td>
+          <td>$50.00</td>
+          <td><span class="rejected">REJECTED</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

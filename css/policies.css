@@ -1,0 +1,94 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
+}
+.policies-outer{
+  height: 100%;
+  width: 100%;
+  position: static;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  /* background-color: white; */
+  font-family: Cambria, Cochin, Georgia,sans-serif;
+}
+.policies-inner {
+  position: static;
+  height:fit-content;
+  width: 780px;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px 0px rgba(104, 107, 148, 0.37); /* soft shadow */
+  -webkit-backdrop-filter: blur(10px);     /* for Safari */
+  backdrop-filter: blur(10px); /* blur background behind */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* subtle border */
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  gap: 20px;
+}
+.policies-title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center ;
+  border-radius: 6px;
+  border: 1px solid rgb(239, 238, 238);
+  padding: 13px;
+}
+.policies-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(251, 251, 251, 0);
+  border-radius: 3px;
+  border: 1px solid rgb(247, 242, 242);
+  padding: 15px; 
+}
+a{
+  color: rgb(75, 120, 243);
+}
+#policies-address span{
+  font-weight: bold;
+}
+.policies-colored-hr {
+  border: none;
+  border-top: 1px dashed rgb(240, 240, 243);
+  height: 0;
+}
+
+.policies-lined-hr {
+  border: none;
+  height: 1px;
+  background-color:rgba(240, 240, 243, 0);
+}
+#policies-response{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#policies-activity{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+p{
+  font-size: 15px;
+}
+.policies-content:hover{
+  background-color: rgb(247, 243, 239);
+}
+i{
+  padding-right:10px ;
+  color: black;
+}
+#check{
+  color: green;
+}
+#xmark{
+  color: red;
+}

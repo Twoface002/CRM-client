@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Support Ticket System</title>
+  <link rel="stylesheet" href="../css/tickers.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h2 id="ttl-h1">Support Tickets</h2>
+    </header>
+
+    <nav class="main-tabs">
+      <button class="tab-button active" onclick="showPage('create')">Create Ticket</button>
+      <button class="tab-button" onclick="showPage('view')">View Tickets</button>
+    </nav>
+
+    <div class="full-container">
+      <!-- Create Ticket Page -->
+      <div class="create-ticket-container">
+        <section id="create" class="page-section active">
+          <h2 class="section-title">Raise a New Ticket</h2>
+          <form id="ticketForm">
+            <label>Subject <span class="required">*</span></label>
+            <input id="subjectInput" type="text" required placeholder="Enter ticket subject" />
+
+            <label>Description <span class="required">*</span></label>
+            <textarea id="descInput" required placeholder="Describe the issue in detail"></textarea>
+
+            <label>Supporting Documents (Optional)</label>
+
+            <div class="upload-area">
+              <input type="file" id="fileInput" accept=".jpg,.jpeg,.pdf" hidden />
+              <div class="upload-box" onclick="document.getElementById('fileInput').click();">
+                <span class="upload-icon">&#8682;</span>
+                <p>Click to attach file</p><br>
+                <p class="subtext">Accepted formats: JPG, JPEG, PDF (Max size: 1MB)</p>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Ticket</button>
+          </form>
+        </section>
+      </div>
+
+      <!-- View Tickets Page -->
+      <div class="view-ticket-container">
+        <section id="view" class="page-section">
+          <h2 class="section-title2">Your Tickets</h2>
+
+          <div class="ticket-tabs">
+            <div class="tab-btn active" data-tab="open" onclick="switchTab('open')">Waiting Tickets</div>
+            <div class="tab-btn" data-tab="closed" onclick="switchTab('closed')">Closed Tickets</div>
+            <div class="tab-btn" data-tab="pending" onclick="switchTab('pending')">Pending Tickets</div>
+          </div>
+
+          <!-- Open Tickets -->
+          <div id="open" class="tab-content active">
+            <h3 class="ticket-heading">Waiting Tickets</h3>
+            <div class="search-box">
+              <input type="text" placeholder="Search waiting tickets..." />
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Created Date</th>
+                  <th>Ticket ID</th>
+                  <th>Username</th>
+                  <th>Subject</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="empty-box">
+                  <td colspan="6">
+                    <img src="inbox.png" alt="No data" />
+                    <div>No data</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Closed Tickets -->
+          <div id="closed" class="tab-content">
+            <h3 class="ticket-heading">Closed Tickets</h3>
+            <div class="search-box">
+              <input type="text" placeholder="Search closed tickets..." />
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Created Date</th>
+                  <th>Ticket ID</th>
+                  <th>Username</th>
+                  <th>Subject</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="empty-box">
+                  <td colspan="6">
+                      <img src="inbox.png" alt="No data" />
+                      <div>No data</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pending Tickets -->
+          <div id="pending" class="tab-content">
+            <h3 class="ticket-heading">Pending Tickets</h3>
+            <div class="search-box">
+              <input type="text" placeholder="Search pending tickets..." />
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Created Date</th>
+                  <th>Ticket ID</th>
+                  <th>Username</th>
+                  <th>Subject</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="empty-box">
+                  <td colspan="6">
+                    <img src="inbox.png" alt="No data" />
+                    <div>No data</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticket Modal -->
+    <div id="ticket-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3 id="modal-subject">Subject <span class="status-tag">• Closed</span></h3>
+
+        <div class="message-block">
+          <a href="#" target="_blank" class="attachment-link" id="modal-attachment">View Attachment</a>
+          <span class="message-meta" id="modal-meta">Date - User</span>
+        </div>
+
+        <div class="chat-box">
+           <button class="attach-btn" id="modal-attach">📎 Attach</button>
+
+          <input type="text" placeholder="Type your message..." id="modal-input" />
+
+           <button class="send-btn" id="modal-send">Send</button>
+          <input type="file" id="modal-file" hidden />
+        </div>
+        <button class="reopen-btn" id="reopen-btn">Reopen Ticket</button>
+      </div>
+    </div>
+
+
+  <script src="../js/tickers.js"></script>
+</body>
+</html>
+

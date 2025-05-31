@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support Assistant</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .suggestion-item {
+      background: #e0e7ff;
+      color: #1e40af;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none; 
+      font-size: inherit; 
+    }
+
+    .suggestion-item:hover {
+      background: #c7d2fe;
+    }
+    .suggestion-item:disabled {
+      background: #e5e7eb; 
+      color: #9ca3af;    
+      cursor: not-allowed;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Gap between input and button */
+    }
+
+    .ai-input {
+      flex: 1;
+      padding: 10px 14px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      outline: none;
+    }
+    .ai-input:disabled {
+      background-color: #f3f4f6; 
+    }
+
+    #sendButton {
+      padding: 10px 15px;
+      font-size: 16px;
+      background-color: #3b82f6; /* A blue color */
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    #sendButton:hover {
+      background-color: #2563eb; /* Darker blue on hover */
+    }
+    #sendButton:disabled {
+      background-color: #9ca3af; /* Gray when disabled */
+      cursor: not-allowed;
+    }
+
+
+    .response-box {
+      margin-top: 20px;
+      background: #f3f4f6;
+      padding: 15px;
+      border-radius: 10px;
+      min-height: 60px;
+      word-wrap: break-word; 
+    }
+
+    .loading {
+      color: #888;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="response-box" id="responseBox">Staff response will appear here...</div><br>
+    <div class="suggestions">
+      <button class="suggestion-item">Check my balance</button>
+      <button class="suggestion-item">Deposit history</button>
+      <button class="suggestion-item">Trading status</button>
+    </div>
+    
+    <div class="input-wrapper">
+      <input type="text" class="ai-input" placeholder="Ask your assistant..." />
+      <button id="sendButton">Send</button> <!-- type="submit" removed as it's not in a form -->
+    </div>
+
+  </div>
+
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script>
+  const socket = io("http://127.0.0.1:5000"); // Replace with deployed URL
+
+  socket.on("connect", () => {
+    console.log("Connected to server");
+  });
+
+  // Receive message
+  socket.on("chat_message", (data) => {
+    responseBox.innerHTML += `<div><b>${data.sender}:</b> ${data.message}</div>`;
+  });
+
+  // Send message
+  sendButton.addEventListener('click', () => {
+    const message = aiInput.value.trim();
+    if (message) {
+      socket.emit("chat_message", {
+        sender: "Client", // or "Admin" depending on user role
+        message: message
+      });
+      aiInput.value = "";
+    }
+  });
+</script>
+
+</body>
+</html>

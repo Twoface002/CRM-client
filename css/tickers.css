@@ -1,0 +1,486 @@
+/* Global Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #222;
+  padding: 20px;
+  font-weight: bold;
+}
+
+/* Container Layout */
+.container,
+.ticket-container {
+  margin: auto;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#ttl-h1{
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff0;
+  margin-bottom: 25px;
+}
+.section-title{
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(0, 60, 255);
+}
+.section-title2{
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+.required{
+color: red;
+font-size: 18px;
+}
+.ticket-heading{
+  color: #00e1ff;
+}
+.full-container{
+  height: 100%; 
+  width: 100%;
+  padding: 25px;
+  justify-items: center;
+}
+.create-ticket-container{
+  background-color: rgba(255, 255, 255, 0.945);
+
+  border-radius: 10px;
+  width: 60%;
+}
+.view-ticket-container{
+  /* background-color: rgba(255, 255, 255, 0.945); */
+   background: linear-gradient(to right,rgb(70, 11, 57),rgba(184, 183, 183, 0), rgb(149, 1, 131));
+  border-radius: 10px;
+  width: 80%;
+
+}
+
+
+
+/* Header */
+header,
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.account-info {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* Navigation Tabs */
+.main-tabs,
+.tabs {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.tab-btn{
+  background:linear-gradient(360deg, rgb(247, 169, 0),rgb(252, 254, 124));
+  color: #000000;
+  letter-spacing: 0.04em;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+}
+.tab-btn.active{
+  background:linear-gradient(360deg, rgb(247, 189, 0),rgba(255, 208, 0, 0.829));
+  color: rgb(255, 255, 255);
+}
+.tab-btn:hover{
+  color: #495045;
+}
+.ticket-tabs {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.main-tabs {
+  display: flex;
+  justify-content: center;
+  /* border-bottom: 1px solid #444; */
+  margin-bottom: 20px;
+}
+.tab-button:hover{
+  color: goldenrod;
+}
+
+.tab-button {
+  cursor: pointer;
+  background-color: transparent;
+  color: #b9b9b9;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+
+}
+
+.tab-button.active {
+  color: #ff0;
+  border-bottom: 2px solid #ff0;
+}
+
+
+.page-section,
+.tab-content {
+  display: none;
+  padding: 20px;
+}
+
+.page-section.active,
+.tab-content.active {
+  display: block;
+}
+
+/* Inner Tab Styles */
+.ticket-tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.inner-tab {
+  background: #eee;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.inner-tab.active {
+  background: #f4c900;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Upload Area */
+.upload-area {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.upload-placeholder p {
+  margin: 10px 0;
+}
+
+.upload-box .subtext {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.upload-icon {
+  font-size: 2rem;
+  color: #007bff;
+}
+
+/* Buttons */
+.submit-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#reopen-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/* Search Box */
+.search-box {
+  display: flex;
+  margin: 15px 0;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.search-box button {
+  padding: 8px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f1f1f1;
+}
+
+a.view-details {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Empty State */
+.empty-box {
+  text-align: center;
+}
+
+.empty-box img {
+  width: 60px;
+  opacity: 0.5;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.459);
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  margin: 10% auto;
+  width: 600px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.status-tag {
+  color: gray;
+  font-size: 14px;
+}
+
+.message-block {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+.attachment-link {
+  color: #007bff;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.message-meta {
+  font-size: 12px;
+  color: #666;
+}
+
+.chat-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.chat-box input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.chat-box button {
+  padding: 8px 12px;
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+}
+
+/* Close Modal */
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .main-tabs,
+  .ticket-tabs,
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tab-button,
+  .tab-btn,
+  .inner-tab {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .modal-content {
+    width: 90%;
+    margin-top: 25%;
+  }
+}
+
+
+/* Additional Responsive Enhancements */
+@media (max-width: 992px) {
+  .create-ticket-container,
+  .view-ticket-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .modal-content {
+    width: 80%;
+    margin-top: 20%;
+  }
+
+  .section-title,
+  .section-title2 {
+    font-size: 22px;
+  }
+
+  .tab-button {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container,
+  .ticket-container,
+  .full-container {
+    padding: 15px;
+  }
+
+  header,
+  .ticket-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+
+  .search-box input,
+  .search-box button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  table th,
+  table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .section-title,
+  .section-title2 {
+    font-size: 20px;
+  }
+
+  #ttl-h1 {
+    font-size: 20px;
+  }
+
+  .tab-button,
+  .tab-btn,
+  .inner-tab {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .upload-area {
+    padding: 15px;
+  }
+
+  input, textarea {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .submit-btn,
+  #reopen-btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}

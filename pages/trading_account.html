@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trading Account</title>
+  <link rel="stylesheet" href="../css/trading_account.css" />
+
+</head>
+<body>
+  <div class="trading-layer">
+
+    <div class="dashboard">
+      <div class="title">
+        <h1 id="tradingaccount">📈 Trading Accounts</h1>
+      </div>
+      <div class="buttons">
+        <button class="nav-btn" id="open" onclick="showPopup('openAccount-pop')">➕ Open Account</button>
+        <button class="nav-btn" id="trans" onclick="showPopup('internalTrans-pop')">💸 Internal Transfer</button>
+        <a href="demo-account.html"><button class="nav-btn" id="demo">🧪 Explore Demo</button></a>
+         
+      </div>
+      <div id="data-showing"><br>
+        <div class="glass-card">
+          <div class="detail">
+            <div class="alpha">
+              <p class="email">📩 tamizharasan344@gmail.com</p>
+              <p class="id">Account ID: <span>2141707098</span></p>
+            </div>
+            <div class="beta">
+              <p class="balance"><span>💰 $18,470.72</span></p>
+            </div>
+          </div>
+    
+          <div class="actions">
+            <a href="#" onclick="showPopup('trades-pop')"><button class="nav-action" id="trade">📈 Trades</button></a>
+
+            <button class="nav-action" id="deposit" onclick="showPopup('deposit-pop')" >💳 Deposit</button>
+            <button class="nav-action" id="withdraw" onclick="showPopup('withdraw-pop')" >🏧 Withdraw</button>
+            <button class="nav-action" id="manage" onclick="showPopup('manage-pop')" >⚙️ Manage</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <!-- Popup Overlay -->
+    <div id="popup-overlay" class="popup-overlay">
+          <div class="modal-content" id="popup-content">
+  
+               <span class="close" onclick="closePopup()">&times;</span>
+    
+               <!-- Open Account codes = Create Trading Account -->
+              <div id="openAccount-pop" class="popup-section">
+                <div class="openAccount">
+                  <div class="modal" id="tradingModal">
+                    <h2>Create New Trading Account</h2>
+                    <form id="accountForm">
+                      <label for="holder_email"><span class="required">* </span> Account Name</label>
+                      <input type="email" required placeholder="Enter account email" id="holder_email"/>
+              
+                      <label for="holder_leverage"><span class="required">* </span> Leverage</label>
+                      <select id="leverage" name="leverage" required>
+                        <option value="1x">1x</option>
+                        <option value="2x">2x</option>
+                        <option value="5x">5x</option>
+                        <option value="10x">10x</option>
+                        <option value="20x">20x</option>
+                        <option value="50x">50x</option>
+                        <option value="100x">100x</option>
+                        <option value="200x">200x</option>
+                        <option value="500x">500x</option>
+                        <option value="1000x">1000x</option>
+                      </select>
+              
+                      <label for="masterPwd"><span class="required">* </span>  Master Password</label>
+                      <input type="password" id="masterPwd" required placeholder="Enter master password"/>
+                      <p class="error" id="masterPwdError"></p>
+                      <p>The master password allows full control of the trading account.</p>
+              
+                      <label for="investerPwd"><span class="required">* </span>  Investor Password</label>
+                      <input type="password"id="investerPwd" required placeholder="Enter investor password"/>
+                      <p>The investor password allows read-only access to the trading account.</p>
+              
+                      <button type="submit" class="btn-blue">Create Account</button>
+  
+                      <button type="button" class="btn-outline" onclick="closePopup()">Cancel</button>
+  
+                    </form>
+                  </div>
+                </div>
+              </div>
+  
+
+
+              <!--Transfer Fund codes -->
+              <div id="internalTrans-pop" class="popup-section">
+                <div class="internalTrans glass-card">
+                  <h2>Internal Transfer</h2>
+              
+                  <form id="transferForm">
+                    <!-- From Account -->
+                    <label for="fromAccount"><span class="required">*</span> From Account:</label>
+                    <select id="fromAccount" name="from_account" required></select>
+              
+                    <!-- To Account -->
+                    <label for="toAccount"><span class="required">*</span> To Account:</label>
+                    <select id="toAccount" name="to_account" required></select>
+              
+                    <!-- Amount -->
+                    <label for="amount"><span class="required">*</span> Amount:</label>
+                    <div class="amount-input">
+                      <span>$</span>
+                      <input type="number" id="amount" name="amount" required min="0" step="0.01">
+                    </div><br>
+              
+                    <!-- Transfer Message -->
+                    <div id="transferMessage" style="margin-top: 10px; display: none;"></div>
+              
+                    <!-- Submit Button -->
+                    <div class="trans-btn">
+                      <button type="submit" class="transfer-btn">Transfer</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- --------------------------------------------------------------------------------------------- -->
+              <!--trades-pop -->
+              <div id="trades-pop" class="popup-section">
+                <div class="trades-modal-container">
+                  <div class="trades-modal-header">
+                    <span>Open Positions for Account: <strong>2141707098</strong></span>
+                </div>
+                <div id="sortPopup" class="sort-popup"></div>
+        
+                <input class="search-input" type="text" id="searchInput" placeholder="Search positions..." onkeyup="searchTable()">
+                <table>
+                    <thead>
+                        <tr class="trades-tr" id="trades-tr-title">
+                            <th onclick="sortTable('trades-id')">ID</th>
+                            <th onclick="sortTable('trades-date')">Date</th>
+                            <th onclick="sortTable('trades-symbol')">Symbol</th>
+                            <th onclick="sortTable('trades-volume')">Volume</th>
+                            <th onclick="sortTable('trades-price')">Price</th>
+                            <th onclick="sortTable('trades-profit')">Profit</th>
+                            <th onclick="sortTable('trades-type')">Type</th>
+                        </tr>
+                    </thead>
+                    <tbody id="positionsTable">
+                        <tr>
+                            <td>39318984</td>
+                            <td>4/29/2025, 2:29:03 PM</td>
+                            <td>EURUSD</td>
+                            <td>0.01</td>
+                            <td>$1.14</td>
+                            <td class="negative">$-6.62</td>
+                            <td>Buy</td>
+                        </tr>
+                        <tr>
+                          <td>55318984</td>
+                          <td>4/29/2025, 2:29:03 PM</td>
+                          <td>EURUSD</td>
+                          <td>0.01</td>
+                          <td>$1.14</td>
+                          <td class="negative">$-5.62</td>
+                          <td>Buy</td>
+                      </tr>
+                        <tr>
+                          <td>85318984</td>
+                          <td>4/29/2025, 2:29:03 PM</td>
+                          <td>EURUSD</td>
+                          <td>0.01</td>
+                          <td>$1.14</td>
+                          <td class="negative">$-5.62</td>
+                          <td>Buy</td>
+                      </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button disabled>&lt;</button>
+                    <button class="active">1</button>
+                    <button disabled>&gt;</button>
+                </div>
+                </div>
+
+                
+              </div>
+
+              <!-- --------------------------------------------------------------------------------------------- -->
+                <!-- Deposit Modal -->
+                <div id="deposit-pop" class="popup-section">
+                  <div class="deposit-modal-container">
+                    <div class="deposit-modal-header">
+                      <span>Deposit Funds</span>
+                      <!-- <span id="closeModal" style="cursor:pointer;">&times;</span> -->
+                    </div>
+
+                    <div class="tabs">
+                      <div class="tab active" onclick="switchTab('cheesepay')">CheesePay</div>
+                      <div class="tab" onclick="switchTab('manual')">Manual Deposit</div>
+                      <div class="tab" onclick="switchTab('usdt')">USDT (TRC20)</div>
+                    </div>
+
+                    <div class="deposit-container-content">
+                      <div class="info-box">
+                        <span>📘 Account ID: 2141707098</span>
+                      </div>
+
+                      <!-- CheesePay Tab -->
+                      <div id="cheesepay" class="tab-content">
+                        <!-- <div id="exchangeWarning" class="note-warning">
+                          ⚠️ Exchange rate not available. Please wait while we fetch the exchange rate to use CheesePay.
+                        </div> -->
+
+                        <div class="deposit-radio-group">
+                          <label><input type="radio" name="cp-currency" value="USD" checked onchange="updateCPConversion()"> USD</label>
+                          <label><input type="radio" name="cp-currency" value="INR" onchange="updateCPConversion()"> INR</label>
+                        </div>
+
+                        <div class="deposit-label" id="cpLabelUSD">USD Amount (USD)</div>
+                        <input class="input-text-file" type="text" id="cpInput" placeholder="Enter amount" oninput="updateCPConversion()">
+                        <input class="input-text-file convert-disabled" type="text" id="cpConverted" disabled>
+
+                        <button class="deposit-box-btn" onclick="alert('Proceeding with CheesePay')">Confirm & Proceed</button>
+                      </div>
+
+                      <!-- Manual Deposit Tab -->
+                      <div id="manual" class="tab-content hidden-con">
+                        <p>Upload proof of payment. Staff approval is required.</p>
+
+                        <div class="deposit-radio-group">
+                          <label><input type="radio" name="manual-currency" value="USD" checked onchange="updateManualConversion()"> USD</label>
+                          <label><input type="radio" name="manual-currency" value="INR" onchange="updateManualConversion()"> INR</label>
+                        </div>
+
+                        <input class="input-text-file" type="text" id="manualInput" placeholder="Enter amount" oninput="updateManualConversion()">
+                        <input class="input-text-file convert-disabled" type="text" id="manualConverted" disabled>
+
+                        <input class="input-text-file" type="file">
+                        <button class="deposit-box-btn" onclick="alert('Submitted for staff approval')">Submit</button>
+                      </div>
+
+                      <!-- USDT Tab -->
+                      <div id="usdt" class="tab-content hidden-con">
+                        <p>Send USDT (TRC20) payment to:</p>
+                        <div class="address-box" id="usdtAddress">TBkQunj4UD4Mej7pKyRVAUg5Jgm9aJRCHs</div>
+                        <div class="copy-btn" onclick="copyAddress()">📋 Copy Address</div>
+
+                        <input class="input-text-file" type="text" placeholder="USD Amount (USDT)">
+                        <input class="input-text-file" type="file">
+
+                        <button class="deposit-box-btn" onclick="alert('USDT payment submitted!')">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <!-- --------------------------------------------------------------------------------------------- -->
+              <!--withdraw codes -->
+              <div id="withdraw-pop" class="popup-section">
+                <div class="withdraw-con-start">
+                  <div class="withdraw-container">
+                    <h2 id="with-titl">Withdraw Funds</h2>
+                  </div>
+                  <div id="error-message" class="error-message">
+                    <span>❌ Please enter a valid amount within the withdrawable limit.</span>
+                  </div>
+                  <div class="with-body">
+                    <div class="with-body-con">
+                      <div class="info-box">
+                        <label class="with-lable">Account ID</label>
+                        <div class="info-value"><span id="with_accid">2141707098</span></div>
+                      </div>
+    
+                      <div class="info-box">
+                        <label class="with-lable">Available Balance</label>
+                        <div class="info-value-balance">$<span id="with_bal">18470.80</span></div>
+                      </div>
+                    </div>
+
+  
+                    <div class="withdraw-method">
+                      <p>Select Withdrawal Method:</p><br>
+                      <div class="with-method-option">
+                        <input type="radio" id="bank" name="withdrawal-method" checked>
+                        <label for="bank">
+                          <strong id="with_bank-tit">Bank Transfer</strong><br>
+                          <small class="withdraw_data">Bank Name : </small><span class="withdraw_data-span" id="with_bank_name"> Indian Bank</span><br>
+                          <small class="withdraw_data">Account Number : </small><span class="withdraw_data-span" id="with_account_no"> 5461143154</span><br>
+                          <small class="withdraw_data">Branch : </small><span class="withdraw_data-span"id="with_branch"> Vadapalai</span><br>
+                          <small class="withdraw_data">IFSC Code : </small><span class="withdraw_data-span" id="with_ifsc"> JFJ884596454</span>
+                        </label>
+                      </div>
+  
+                      <div class="method-option">
+                        <input type="radio" id="crypto" name="withdrawal-method">
+                        <label for="crypto">
+                          <strong id="cryp-tit">Crypto Wallet</strong><br>
+                          <small class="withdraw_data">Wallet Address : </small><span class="withdraw_data-span" id="with_wallet_add"> No: 03 Vadapalai chennai</span><br>
+                          <small class="withdraw_data">Exchange Name : </small><span class="withdraw_data-span" id="with_exchange_name"> Ganapathi rao</span><br>
+                        </label>
+                      </div>
+                  </div>
+  
+                  <input type="number" id="with_amount" placeholder="Enter amount">
+  
+                  <div class="with_buttons">
+                    <button class="with_close_btn" onclick="closePopup()">Close</button>
+                    <button class="with_withdraw_btn" onclick="withdraw()">Withdraw</button>
+                  </div>
+                </div>
+                </div>
+
+              </div>
+
+              <!-- --------------------------------------------------------------------------------------------- -->
+              <!--manage setting codes -->
+              <div id="manage-pop" class="popup-section">
+                <div class="manage-setting">
+                  <h3 id="Mng-h3">⚙️Manage Settings</h3><br>
+                  <!-- Leverage -->
+                  <div>
+                    <label  class="MngLable" for="holder_leverage">Leverage</label>
+                    <p>Current Leverage: <span id="currentLeverage">500</span></p>
+                    <select class="MngSelect" id="leverageSelect" name="leverage" required>
+                      <option value="" disabled selected>Select Leverage</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                      <option value="200">200</option>
+                      <option value="500">500</option>
+                      <option value="1000">1000</option>
+                    </select>
+                    <button class="MngBtn" onclick="updateLeverage()">Update Leverage</button>
+                  </div>
+                
+                  <!-- Change Password -->
+                  <div>
+                    <label class="MngLable">Change Password</label>
+                    <input class="MngInput" type="password" id="newPassword" placeholder="New Password">
+                    <input class="MngInput" type="password" id="confirmPassword" placeholder="Confirm Password">
+                    <button class="MngBtn" onclick="updatePassword()">Update Password</button>
+                  </div>
+                
+                  <!-- Algo Trading -->
+                  <div class="algo">
+                    <label  class="MngLable">Algo Trading</label>
+                    <p class="current-status">Current Status: <span id="algoStatus" style="color: green;">Enabled</span></p>
+                    <label  class="MngLable" class="toggle-switch"><br>
+                      <input  type="checkbox" id="algoToggle" checked onchange="toggleAlgo()" hidden>
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+    </div>
+  </div>
+
+
+  <script src="../js/trading_account.js"></script>
+  <script></script>
+</body>
+</html>
+
+
+ 

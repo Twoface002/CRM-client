@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAM Investments</title>
+  <link rel="stylesheet" href="../css/investmam.css" />
+</head>
+
+<body>
+
+  <div class="mam-main-con">
+    <div class="invest-manager-container">
+      <header id="titl-h1">MAM Investments</header>
+      <div class="back-menu-btn">
+        <a href="./social_trading.html" class="manage-accounts-btn">Go Manage Accounts</a>
+      </div>
+      <div class="invest-mam-top-bar">
+        <div id="availableManagersTab" class="tab active" onclick="switchTab('availableManagersSection')">Available Managers</div>
+        <div id="myInvestmentsTab" class="tab" onclick="switchTab('myInvestmentsSection')">My Investments</div>
+      </div>
+    </div>
+
+    <!-- Available Managers Section -->
+    <div id="availableManagersSection" class="section">
+      <div class="explore-ttl-section">Explore Top MAM Managers</div>
+      <div class="display-cards" id="managerList">
+
+        <!-- Manager Card -->
+        <div class="invest-manager-card">
+          <h2 id="invest-manager-name">Manager_Name</h2>
+          <p id="invest-manager-id">ID: <span id="invest-manager-id-no">00000000</span></p>
+          <div class="invest-manager-details">
+            <div class="manager-info-box"><span class="balance">Balance : </span><span class="balance-amount">$0.00</span></div>
+            <div class="manager-info-box"><span class="equity">Equity : </span><span class="equity-amount">$0.00</span></div>
+            <div class="manager-info-box"><span class="profit">Profit : </span><span class="profit-amount">$0.00</span></div>
+            <div class="manager-info-box"><span class="account-age">Account Age : </span><span class="account-age">0 days</span></div>
+            <div class="manager-info-box"><span class="profit-share">Profit Share : </span><span class="profit-share">0%</span></div>
+            <div class="investNow-btn"  onclick="openInvestModal('investInvestmentModal')">👥 Invest Now</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+<!-- Modal Overlay -->
+<div id="investInvestmentModal" class="modal-overlay" style="display: none;">
+  <div class="investNow-password-modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Invest in <span id="investManagerId">#123</span></h2>
+    <div class="details">
+      <p><b>Manager:</b> <span id="investManagerName">John Doe</span></p>
+      <p><b>Balance:</b> <span id="investBalance">$10,000</span></p>
+      <p><b>Profit Share:</b> <span id="investProfitShare">20%</span></p>
+      <p><b>Risk Level:</b> <span id="investRisklevel">Moderate</span></p>
+      <p><b>Growth:</b> <span id="investGrowth">+15%</span></p>
+      <p>To proceed, enter your investment password.</p>
+    </div>
+    <div id="error-msg" class="error"></div>
+    <input type="password" id="investment-password" placeholder="Enter password">
+    <input type="password" id="confirm-password" placeholder="Confirm password">
+    <div class="modal-buttons">
+      <button onclick="submitRequest()">Submit Request</button>
+      <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+    <!-- My Investments Section -->
+    <div id="myInvestmentsSection" class="section" style="display: none;">
+      <div class="explore-ttl-section">My Investments</div>
+      <div id="myInvestmentList" class="my-investment-list">
+
+        <!-- JavaScript should inject actual manager data below -->
+
+
+      <div class="manager-card">
+        <h2 class="investment-title"><span class="investorMamId">Loading..-MAM</span></h2>
+        <p class="investorId">ID: Loading.. - <span class="status">Copying</span></p>
+        <div class="investment-details">
+        <div class="investment-info-box">
+        <img class="logo-img" src="https://img.icons8.com/emoji/48/000000/e-mail.png" />
+        <span class="email">Email : </span><span class="investmanagerEmail">Loading..</span>
+        </div>
+        <div class="investment-info-box">
+        <img class="logo-img" src="https://img.icons8.com/color/48/money.png" />
+        <span class="balance">Balance : </span><span class="balance-amount">Loading..</span>
+        </div>
+        <div class="investment-info-box">
+        <img class="logo-img" src="https://img.icons8.com/color/48/combo-chart--v1.png" />
+        <span class="profit">Profit Share : </span><span class="profit-amount">Loading..</span>
+        </div>
+        <div class="investment-info-box">
+        <img class="logo-img" src="https://img.icons8.com/color/48/scale.png" />
+        <span class="Leverage">Leverage : </span><span class="invest-leverage">Loading..</span>
+        </div>
+        </div>
+
+        <div class="invest-pause-card" data-manager-id="1">
+        <div class="actions">
+        <button class="pause-btn btn pause" >⏸️ Pause</button>
+        <button class="btn deposit" onclick="showPopup('deposit-pop')">💰 Deposit</button>
+        <button class="btn withdraw" onclick="showPopup('withdraw-pop')">💳 Withdraw</button>
+        </div>
+        </div>
+
+      </div>
+      
+      </div>    
+    </div> 
+  </div>
+
+  <div class="popup-overlay" id="popup-overlay">
+  <div class="modal-content">
+  <span class="close" onclick="closePopup()">&times;</span>
+
+
+    <div class="popup-section" id="deposit-pop">
+<div class="deposit-modal-container" id="depositModal">
+  <div class="deposit-modal-header">
+    <span>Deposit Funds</span>
+  </div>
+
+  <div class="deposit-tabs">
+    <div class="deposittab active" data-tab="cheesepay">CheesePay</div>
+    <div class="deposittab" data-tab="manual">Manual Deposit</div>
+    <div class="deposittab" data-tab="usdt">USDT (TRC20)</div>
+  </div>
+
+  <div class="deposit-container-content">
+    <div class="info-box">
+      <span>📘 Account ID: 2141707098</span>
+    </div>
+
+    <!-- CheesePay -->
+    <div id="cheesepay" class="deposit-tab-content">
+      <div class="deposit-radio-group">
+        <label><input type="radio" name="cp-currency" value="USD" checked> USD</label>
+        <label><input type="radio" name="cp-currency" value="INR"> INR</label>
+      </div>
+      <div class="deposit-label" id="cpLabelUSD">USD Amount (USD)</div>
+      <input class="input-text-file" type="text" id="cpInput" placeholder="Enter amount">
+      <input class="input-text-file convert-disabled" type="text" id="cpConverted" disabled>
+      <button class="deposit-box-btn" id="cpConfirm">Confirm & Proceed</button>
+    </div>
+
+    <!-- Manual -->
+    <div id="manual" class="deposit-tab-content hidden-con">
+      <p>Upload proof of payment. Staff approval is required.</p>
+      <div class="deposit-radio-group">
+        <label><input type="radio" name="manual-currency" value="USD" checked> USD</label>
+        <label><input type="radio" name="manual-currency" value="INR"> INR</label>
+      </div>
+      <input class="input-text-file" type="text" id="manualInput" placeholder="Enter amount">
+      <input class="input-text-file convert-disabled" type="text" id="manualConverted" disabled>
+      <input class="input-text-file" type="file">
+      <button class="deposit-box-btn" id="manualSubmit">Submit</button>
+    </div>
+
+    <!-- USDT -->
+    <div id="usdt" class="deposit-tab-content hidden-con">
+      <p>Send USDT (TRC20) payment to:</p>
+      <div class="address-box" id="usdtAddress">TBkQunj4UD4Mej7pKyRVAUg5Jgm9aJRCHs</div>
+      <div class="copy-btn" id="copyUsdt">📋 Copy Address</div>
+      <input class="input-text-file" type="text" placeholder="USD Amount (USDT)">
+      <input class="input-text-file" type="file">
+      <button class="deposit-box-btn" id="usdtSubmit">Submit</button>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <div class="popup-section" id="withdraw-pop">
+                <div class="withdraw-con-start">
+                  <div class="withdraw-container">
+                    <h2 id="with-titl">Withdraw Funds</h2>
+                  </div>
+                  <div id="error-message" class="error-message">
+                    <span>❌ Please enter a valid amount within the withdrawable limit.</span>
+                  </div>
+                  <div class="with-body">
+                    <div class="with-body-con">
+                      <div class="info-box">
+                        <label class="with-lable">Account ID</label>
+                        <div class="info-value"><span id="with_accid">2141707098</span></div>
+                      </div>
+    
+                      <div class="info-box">
+                        <label class="with-lable">Available Balance</label>
+                        <div class="info-value-balance">$<span id="with_bal">18470.80</span></div>
+                      </div>
+                    </div>
+
+  
+                    <p id="tit-withdraw-method">Select Withdrawal Method:</p><br>
+
+                    <div class="withdraw-tabs">
+                      <div class="with-tab-buttons">
+                        <button class="with-tab-btn active" data-target="bank-tab">Bank Transfer</button>
+                        <button class="with-tab-btn" data-target="crypto-tab">Crypto Wallet</button>
+                      </div>
+                    
+                      <div class="with-tab-content active" id="bank-tab">
+                        <strong>Bank Transfer</strong><br>
+                        <small class="withdraw_data">Bank Name:</small>
+                        <span class="withdraw_data-span" id="with_bank_name"> Indian Bank</span><br>
+                        <small class="withdraw_data">Account Number:</small>
+                        <span class="withdraw_data-span" id="with_account_no"> 5461143154</span><br>
+                        <small class="withdraw_data">Branch:</small>
+                        <span class="withdraw_data-span" id="with_branch"> Vadapalai</span><br>
+                        <small class="withdraw_data">IFSC Code:</small>
+                        <span class="withdraw_data-span" id="with_ifsc"> JFJ884596454</span>
+                      </div>
+                    
+                      <div class="with-tab-content" id="crypto-tab">
+                        <strong>Crypto Wallet</strong><br>
+                        <small class="withdraw_data">Wallet Address:</small>
+                        <span class="withdraw_data-span" id="with_wallet_add"> No: 03 Vadapalai chennai</span><br>
+                        <small class="withdraw_data">Exchange Name:</small>
+                        <span class="withdraw_data-span" id="with_exchange_name"> Ganapathi rao</span>
+                      </div>
+                    </div>
+  
+                  <input class="with-input-amount" type="number" id="with_amount" placeholder="Enter amount">
+  
+                  <div class="with_buttons">
+                    <button class="with_close_btn" onclick="closePopup()">Close</button>
+                    <button class="with_withdraw_btn" onclick="withdraw()">Withdraw</button>
+                  </div>
+                </div>
+                </div>
+    </div>
+    </div>
+
+  </div>
+
+  <script src="../js/investmam.js"></script>
+</body>
+
+</html>

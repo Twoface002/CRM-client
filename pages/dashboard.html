@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/trading_account.css">
+  <script src="../js/dashboard.js"></script>
+</head>
+<body>
+  <div class="button">
+    <button class="nav-action" id="deposit" onclick="showPopup('deposit-pop')" >💳 Deposit</button>
+    <button class="nav-action" id="withdraw" onclick="showPopup('withdraw-pop')" >🏧 Withdraw</button>
+  </div><br>
+  <div class="container">
+    <div class="dashboard-box Live">Live</div>
+    <div class="dashboard-box Demo">Demo</div>
+    <div class="dashboard-box Real">Real</div>
+    <div class="dashboard-box IB">IB</div>
+    <div class="dashboard-box Deposit">Deposit</div>
+    <div class="dashboard-box MAM">MAM</div>
+    <div class="dashboard-box MAM_Management">MAM Management</div>
+    <div class="dashboard-box IB_Commission">IB Commission</div>
+    <div class="dashboard-box IB_Withdrawal">IB Withdrawal</div>    
+  </div>
+  <div class="Recent Activity">
+    <h2>Recent Activity</h2>
+      <ul id="activity-list">
+      <!-- Activity items will be dynamically inserted here -->
+    </ul>
+  </div>
+
+
+         <!-- Popup Overlay -->
+         <div id="popup-overlay" class="popup-overlay">
+          <div class="modal-content" id="popup-content">
+  
+            <span class="close" onclick="closePopup()">&times;</span>
+              
+              <!--withdraw codes -->
+              <div id="withdraw-pop" class="popup-section">
+                <div class="withdraw-con-start">
+                  <div class="withdraw-container">
+                    <h2 id="with-titl">Withdraw Funds</h2>
+                  </div>
+                  <div class="with-body">
+                    <div class="with-body-con">
+                      <div class="info-box">
+                        <label class="with-lable">Account ID</label>
+                        <div class="info-value"><span id="with_accid">2141707098</span></div>
+                      </div>
+    
+                      <div class="info-box">
+                        <label class="with-lable">Available Balance</label>
+                        <div class="info-value-balance">$<span id="with_bal">18470.80</span></div>
+                      </div>
+                    </div>
+
+  
+                    <div class="withdraw-method">
+                      <p>Select Withdrawal Method:</p><br>
+                      <div class="with-method-option">
+                        <input type="radio" id="bank" name="withdrawal-method" checked>
+                        <label for="bank">
+                          <strong id="with_bank-tit">Bank Transfer</strong><br>
+                          <small class="withdraw_data">Bank Name : </small><span class="withdraw_data-span" id="with_bank_name"> Indian Bank</span><br>
+                          <small class="withdraw_data">Account Number : </small><span class="withdraw_data-span" id="with_account_no"> 5461143154</span><br>
+                          <small class="withdraw_data">Branch : </small><span class="withdraw_data-span"id="with_branch"> Vadapalai</span><br>
+                          <small class="withdraw_data">IFSC Code : </small><span class="withdraw_data-span" id="with_ifsc"> JFJ884596454</span>
+                        </label>
+                      </div>
+  
+                      <div class="method-option">
+                        <input type="radio" id="crypto" name="withdrawal-method">
+                        <label for="crypto">
+                          <strong id="cryp-tit">Crypto Wallet</strong><br>
+                          <small class="withdraw_data">Wallet Address : </small><span class="withdraw_data-span" id="with_wallet_add"> No: 03 Vadapalai chennai</span><br>
+                          <small class="withdraw_data">Exchange Name : </small><span class="withdraw_data-span" id="with_exchange_name"> Ganapathi rao</span><br>
+                        </label>
+                      </div>
+                  </div>
+  
+                  <input type="number" id="with_amount" placeholder="Enter amount">
+  
+                  <div class="with_buttons">
+                    <button class="with_close_btn" onclick="closePopup()">Close</button>
+                    <button class="with_withdraw_btn" onclick="withdraw()">Withdraw</button>
+                  </div>
+                </div>
+                </div>
+
+              </div>
+
+
+                <!-- --------------------------------------------------------------------------------------------- -->
+                <!-- Deposit Modal -->
+                <div id="deposit-pop" class="popup-section">
+                  <div class="deposit-modal-container">
+                    <div class="deposit-modal-header">
+                      <span>Deposit Funds</span>
+                      <!-- <span id="closeModal" style="cursor:pointer;">&times;</span> -->
+                    </div>
+
+                    <div class="tabs">
+                      <div class="tab active" onclick="switchTab('cheesepay')">CheesePay</div>
+                      <div class="tab" onclick="switchTab('manual')">Manual Deposit</div>
+                      <div class="tab" onclick="switchTab('usdt')">USDT (TRC20)</div>
+                    </div>
+
+                    <div class="deposit-container-content">
+                      <div class="info-box">
+                        <span>📘 Account ID: 2141707098</span>
+                      </div>
+
+                      <!-- CheesePay Tab -->
+                      <div id="cheesepay" class="tab-content">
+                        <!-- <div id="exchangeWarning" class="note-warning">
+                          ⚠️ Exchange rate not available. Please wait while we fetch the exchange rate to use CheesePay.
+                        </div> -->
+
+                        <div class="deposit-radio-group">
+                          <label><input type="radio" name="cp-currency" value="USD" checked onchange="updateCPConversion()"> USD</label>
+                          <label><input type="radio" name="cp-currency" value="INR" onchange="updateCPConversion()"> INR</label>
+                        </div>
+
+                        <div class="deposit-label" id="cpLabelUSD">USD Amount (USD)</div>
+                        <input class="input-text-file" type="text" id="cpInput" placeholder="Enter amount" oninput="updateCPConversion()">
+                        <input class="input-text-file convert-disabled" type="text" id="cpConverted" disabled>
+
+                        <button class="deposit-box-btn" onclick="alert('Proceeding with CheesePay')">Confirm & Proceed</button>
+                      </div>
+
+                      <!-- Manual Deposit Tab -->
+                      <div id="manual" class="tab-content hidden-con">
+                        <p>Upload proof of payment. Staff approval is required.</p>
+
+                        <div class="deposit-radio-group">
+                          <label><input type="radio" name="manual-currency" value="USD" checked onchange="updateManualConversion()"> USD</label>
+                          <label><input type="radio" name="manual-currency" value="INR" onchange="updateManualConversion()"> INR</label>
+                        </div>
+
+                        <input class="input-text-file" type="text" id="manualInput" placeholder="Enter amount" oninput="updateManualConversion()">
+                        <input class="input-text-file convert-disabled" type="text" id="manualConverted" disabled>
+
+                        <input class="input-text-file" type="file">
+                        <button class="deposit-box-btn" onclick="alert('Submitted for staff approval')">Submit</button>
+                      </div>
+
+                      <!-- USDT Tab -->
+                      <div id="usdt" class="tab-content hidden-con">
+                        <p>Send USDT (TRC20) payment to:</p>
+                        <div class="address-box" id="usdtAddress">TBkQunj4UD4Mej7pKyRVAUg5Jgm9aJRCHs</div>
+                        <div class="copy-btn" onclick="copyAddress()">📋 Copy Address</div>
+
+                        <input class="input-text-file" type="text" placeholder="USD Amount (USDT)">
+                        <input class="input-text-file" type="file">
+
+                        <button class="deposit-box-btn" onclick="alert('USDT payment submitted!')">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+          </div>
+        </div>
+  <script src="../js/trading_account.js"></script>
+</body>
+</html>
+
+
+
+
+

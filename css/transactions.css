@@ -1,0 +1,95 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial,sans-serif;
+}
+body{
+  height: 100%;
+  width: 100%;
+  color: white;
+}
+body h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px; 
+}
+.tabs{
+  height: 69px;
+  width: 100%;
+  box-shadow: 1px 1px 0px 1px rgb(244, 245, 194);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 20px;
+  color: rgb(255, 255, 255);
+}   
+.tabs{
+  display: flex;
+  flex-direction: row;
+  padding: 0px 20px;
+}
+
+.tab {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 25px;
+  font-weight: bold;
+}
+.tab:hover{
+  color: goldenrod
+}
+
+.tab.active {
+  color: gold;
+  border-bottom: 2px solid rgb(206, 143, 6);
+}
+.section {
+  display: none;
+  padding: 20px;
+}
+
+.section.active {
+  display: block;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+table th{
+  font-size: 18px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #9e9a9a;
+}
+
+.approved {
+  color: green;
+  background: #d2ffd2;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.rejected {
+  color: red;
+  background: #ffd2d2;
+  padding: 4px 10px;
+  border-radius: 6px;
+} 
+
+
+
+
+
+
+
+
+
+  
